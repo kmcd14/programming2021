@@ -5,9 +5,12 @@
 import math
 
 deposit = input('please enter the amount you wish to deposit: ')
-dollars_to_cents = deposit.find('.')
 
-cents = int(dollars_to_cents)
-absoute_cents = abs(cents)
+# turn the amount entered in to cents 
+# replaces '.' with a nothing 
+dollars_to_cents = deposit.replace('.', '') 
 
-print(dollars_to_cents)
+int_cents = int(dollars_to_cents) #changes string to integer
+absolute_amount = abs(int_cents)  # we can now get the absolute value 
+
+print(absolute_amount)
