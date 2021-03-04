@@ -2,12 +2,25 @@
 # This program will allow the user to create new students and view the added students
 # Author: Katie Mc Donald
 
+import json
+students = []
+filename ='students.json'
+def write_dict(obj):
+    with open(filename, 'wt') as f:
+        json.dump(obj, f)
+
+def read_dict():
+    with open(filename) as f:
+        return json.load(f)
+
 
 # title menu
 def title_menu():
     print('\nWhat would you like to do?\n')
     print('\t(a) Add new student')
     print('\t(v) View Students')
+    print('\t(l) Load students')
+    print('\t(s) Save Students')
     print('\t(q) Quit')
     
     choice = input('\nPlease choose a letter a/v/q to continue ')
@@ -47,6 +60,14 @@ def view(students):
         print(current_student['name'])
         view_modules(current_student['modules'])
 
+def load():
+    global students
+    students = read_dict()
+    print('students loaded')
+
+def save(students):
+    write_dict(students)
+    print('students saved')
 
 #main programme
 students = [] 
@@ -56,6 +77,10 @@ while choice != 'q':
         add(students)
     elif choice == 'v':
         view(students)
+    elif choice == 'l':
+        load()
+    elif choice == 's':
+        save(students)
     elif choice == 'q':
         print('please select a,v or q \n')
     choice = title_menu()
